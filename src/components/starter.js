@@ -1,3 +1,5 @@
+//@ts-check
+
 function getWeatherIcon(wmoCode) {
   const icons = new Map([
     [[0], "☀️"],
@@ -52,6 +54,6 @@ async function getWeather(location) {
     const weatherData = await weatherRes.json();
     console.log(weatherData.daily);
   } catch (err) {
-    console.err(err);
+    console.error(err);
   }
 }

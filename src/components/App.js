@@ -1,4 +1,7 @@
-import { useEffect, useReducer } from "react";
+//@ts-check
+
+import React from "react";
+import { useEffect, useReducer }  from "react";
 import Header from "./Header";
 import Main from "./Main";
 import Loader from "./Loader";
@@ -70,14 +73,15 @@ function reducer(state, action) {
       };
 
     default:
-      throw new Error("action is unknown");
+      throw Error();
   }
 }
 
 export default function App() {
   const [
     { questions, statues, index, answer, points, highScore, secondsRemaining },
-    dispatch,
+    
+    dispatch
   ] = useReducer(reducer, initialState);
 
   const numQuestions = questions.length;
@@ -91,7 +95,7 @@ export default function App() {
       .then((res) => res.json())
       .then((data) => dispatch({ type: "dataReceived", payload: data }))
       .catch((err) => dispatch({ type: "error" }));
-  }, []);
+  }, [dispatch]);
   return (
     <div className="app">
       <Header />
